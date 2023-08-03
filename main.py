@@ -1,34 +1,79 @@
 from getpass import getpass
 
-from users_helper_functions import sha256_hash
-import db_connection
+from login import Login
+from signup import Signup
 
 
-def is_valid_credentials(username, input_password):
-    res = db_connection.get_password_hash(username)
-
-    hashed_db_password = ''
-    if res != None:
-        hashed_db_password = res[0]
-    else:
-        return False
-
-    hashed_input_password = sha256_hash(input_password)
-    if hashed_db_password == hashed_input_password:
-        return True
-    else:
-        return False
+def print_header():
+    print("Authentication Program")
 
 
-def main():
+def print_menu():
+    print("""Chose an option:
+(1) Sign in
+(2) Sign up
+(q) Quit""")
+
+
+def ask_to_signin():
+    while True:
+        signin = input("Would you like to sign in now? [yes/no]: ")
+        if signin in "yes":
+            login()
+            break
+        elif signin in "no":
+            break
+
+
+def login():
     username = input("Username: ")
     password = getpass("Password: ")
 
-    if is_valid_credentials(username, password):
+    authentication = Login()
+    authentication.set_username(username)
+    authentication.set_password(password)
+
+    if authentication.is_valid_credentials():
         print("Authenticated")
     else:
         print("Not authenticated")
 
 
-main()
+def signup():
+    registration = Signup()
+
+    while True:
+        username = input("Username: ")
+        user_exists = registration.user_exists(username)
+        if user_exists:
+            print("This username is taken. Try another one.")
+        else:
+            registration.set_username(username)
+            break
+
+    password = getpass("Password: ")
+    registration.set_password(password)
+    registration.add_user()
+
+
+def main():
+    print_header()
+
+    while True:
+        print_menu()
+        choice = input("Your choice: ")
+
+        if choice in "12q":
+            if choice == '1':
+                login()
+            elif choice == '2':
+                signup()
+                ask_to_signin()
+
+            print("Exiting authentication...")
+            break
+
+
+if __name__ == "__main__":
+    main()
 

@@ -1,6 +1,6 @@
 # Login System
 
-A simple authentication system built for my portfolio and educational purposes. It was written in **Python 3.11**, and I used the **SQLite 3.42** database to store the credentials.
+A simple authentication system built for my portfolio and educational purposes. It was written in **Python 3.11**, and I used the **SQLite 3.42** database to store the hashed credentials.
 
 ## Login
 
@@ -46,10 +46,10 @@ If the database already exists, the program will show the name of each table, ho
 
 ## TODO
 
-- Refactor the code to use classes
-- Ask the user to confirm the password when signin up
-- Add some password requirements
-- Add an option to change the password
-- Add an option to remove a user
-- Use a better hashing algorithm (Argon2id)
-- Salt and/or pepper the passwords before hashing
+- [x] Refactor the code to use classes
+- [ ] Ask the user to confirm the password when signin up
+- [ ] Add password requirements
+- [ ] Add option to change the password
+- [ ] Add option to remove a user
+- [ ] Use a better hashing algorithm (Argon2id)
+- [ ] Salt and/or pepper the passwords before hashing
