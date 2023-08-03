@@ -1,3 +1,5 @@
+import re
+
 from users_helper_functions import hash_password
 import db_connection
 
@@ -21,4 +23,54 @@ class Signup():
     def add_user(self):
         user = [(self._username, self._input_password)]
         db_connection.insert_users(user)
+
+    def password_is_strong(self, password):
+
+        if len(password) < 8:
+            return False
+        elif not self._has_lowercase_letter(password):
+            return False
+        elif not self._has_uppercase_letter(password):
+            return False
+        elif not self._has_number(password):
+            return False
+        elif not self._has_special_character(password):
+            return False
+        else:
+            return True
+
+
+    def _has_lowercase_letter(self, password):
+        regex_search = re.search(r'[a-z]', password)
+        has_uppercase = bool(regex_search)
+        if has_uppercase:
+            return True
+        else:
+            return False
+
+
+    def _has_uppercase_letter(self, password):
+        regex_search = re.search(r'[A-Z]', password)
+        has_uppercase = bool(regex_search)
+        if has_uppercase:
+            return True
+        else:
+            return False
+
+
+    def _has_number(self, password):
+        regex_search = re.search(r'[0-9]', password)
+        has_number = bool(regex_search)
+        if has_number:
+            return True
+        else:
+            return False
+
+
+    def _has_special_character(self, password):
+        for c in password:
+            if c in "!@#$%¨&*()-_=+{}[]\\\ |/?:;.>,<^~`´":
+                return True
+
+        return False
 

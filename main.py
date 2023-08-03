@@ -15,16 +15,6 @@ def print_menu():
 (q) Quit""")
 
 
-def ask_to_signin():
-    while True:
-        signin = input("Would you like to sign in now? [yes/no]: ")
-        if signin in "yes":
-            login()
-            break
-        elif signin in "no":
-            break
-
-
 def login():
     username = input("Username: ")
     password = getpass("Password: ")
@@ -39,29 +29,58 @@ def login():
         print("Not authenticated")
 
 
+def get_valid_password(registration):
+    while True:
+        password = ''
+
+        while True:
+            password = getpass("Password: ")
+            if registration.password_is_strong(password):
+                break
+            else:
+                print("This password isn't strong enough.")
+                print("Please insert a password that meet these requirements:")
+                print("- At least 8 characters.")
+                print("- At least one numeric digit.")
+                print("- At least one uppercase letter.")
+                print("- At least one lowercase letter.")
+                print("- At least one special character.")
+
+        password_confirmation = getpass("Confirm the password: ")
+
+        if password == password_confirmation:
+            return password
+        else:
+            print("Passwords don't match, please try again.")
+
+
 def signup():
     registration = Signup()
 
     while True:
         username = input("Username: ")
         user_exists = registration.user_exists(username)
+
         if user_exists:
             print("This username is taken. Try another one.")
         else:
             registration.set_username(username)
             break
 
-    while True:
-        password = getpass("Password: ")
-        password_confirmation = getpass("Confirm the password: ")
-
-        if password == password_confirmation:
-            break
-        else:
-            print("Passwords don't match, please try again.")
+    password = get_valid_password(registration)
 
     registration.set_password(password)
     registration.add_user()
+
+
+def ask_to_signin():
+    while True:
+        signin = input("Would you like to sign in now? [yes/no]: ")
+        if signin in "yes":
+            login()
+            break
+        elif signin in "no":
+            break
 
 
 def main():

@@ -48,7 +48,7 @@ If the database already exists, the program will show the name of each table, ho
 
 - [x] Refactor the code to use classes
 - [x] Ask the user to confirm the password when signing up
-- [ ] Add password requirements
+- [x] Add password requirements
 - [ ] Add option to change the password
 - [ ] Add option to remove a user
 - [ ] Use a better hashing algorithm (Argon2id)
