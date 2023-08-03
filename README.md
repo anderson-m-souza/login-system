@@ -37,7 +37,7 @@ python setup_db.py
 The credentials are:
 
 |username|password |
-|--------+---------|
+|--------|---------|
 |`user1` |`pass123`|
 |`user2` |`321pass`|
 |`user3` |`qwerty` |
