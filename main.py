@@ -51,7 +51,15 @@ def signup():
             registration.set_username(username)
             break
 
-    password = getpass("Password: ")
+    while True:
+        password = getpass("Password: ")
+        password_confirmation = getpass("Confirm the password: ")
+
+        if password == password_confirmation:
+            break
+        else:
+            print("Passwords don't match, please try again.")
+
     registration.set_password(password)
     registration.add_user()
 

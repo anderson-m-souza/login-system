@@ -47,7 +47,7 @@ If the database already exists, the program will show the name of each table, ho
 ## TODO
 
 - [x] Refactor the code to use classes
-- [ ] Ask the user to confirm the password when signin up
+- [x] Ask the user to confirm the password when signing up
 - [ ] Add password requirements
 - [ ] Add option to change the password
 - [ ] Add option to remove a user
