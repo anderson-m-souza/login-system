@@ -17,10 +17,25 @@ def get_password_hash(username):
     return res
 
 
+def get_password_salt(username):
+    con = get_connection()
+    cur = con.cursor()
+    cur.execute("SELECT password_salt FROM users WHERE username='{}'".format(username))
+    res = cur.fetchone()
+    cur.close()
+    return res
+
+
 def create_db():
     con = get_connection()
     cur = con.cursor()
-    cur.execute("CREATE TABLE users (username VARCHAR, password_hash VARCHAR)")
+    cur.execute("""
+        CREATE TABLE users (
+            username VARCHAR,
+            password_hash VARCHAR,
+            password_salt VARCHAR
+        )
+    """)
     con.commit()
     cur.close()
 
@@ -28,7 +43,7 @@ def create_db():
 def insert_users(users):
     con = get_connection()
     cur = con.cursor()
-    cur.executemany("INSERT INTO users VALUES (?, ?)", users)
+    cur.executemany("INSERT INTO users VALUES (?, ?, ?)", users)
     con.commit()
     cur.close()
 

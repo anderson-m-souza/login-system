@@ -1,10 +1,11 @@
 import re
 
-from users_helper_functions import hash_password
+from users_helper_functions import hash_password, generate_salt
 import db_connection
 
 
 class Signup():
+
 
     def user_exists(self, username):
         user_exists = db_connection.user_exists(username)
@@ -15,14 +16,20 @@ class Signup():
         self._username = username
 
 
+    def _set_salt(self):
+        self._salt = generate_salt()
+
+
     def set_password(self, password):
-        hashed_password = hash_password(password)
+        self._set_salt()
+        hashed_password = hash_password(password, self._salt)
         self._input_password = hashed_password
 
 
     def add_user(self):
-        user = [(self._username, self._input_password)]
+        user = [(self._username, self._input_password, self._salt)]
         db_connection.insert_users(user)
+
 
     def password_is_strong(self, password):
 

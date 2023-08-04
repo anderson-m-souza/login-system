@@ -5,9 +5,12 @@ import db_connection
 
 def create_db():
     users = [
-        ('user1', '9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8dfd5b37374c'),
-        ('user2', '2a0ed4a87b24786ecfaf39712985c9054b36dab2df714e5f1cd45ba53dbc6d41'),
-        ('user3', '65e84be33532fb784c48129675f9eff3a682b27168c0ea744b2cf58ee02337c5')
+        # Pa$$w0rd
+        ('user1', '97c94ebe5d767a353b77f3c0ce2d429741f2e8c99473c3c150e2faa3d14c9da6', '15e501a12ad0c83c3bddd9625e463ce5f9264e9e52d78bcc20d1bf2897ea323d'),
+        # Qwer1234%
+        ('user2', 'd680cb7b13e71d24791855edea4983f8a6c97e0cd666bff10908c1a309ba4e21', 'da2b2ed7b74a8bb4d849458471811411128b1e79655e8affdf47bcc496543275'),
+        # asdF!234
+        ('user3', '0fe88cec2272917529ad607668a9029a17aeb95ad68cfa059375d7db6d00e33a', '5bbb0302f02bf72943b4530b19fc6500ff274eea181406ecbfec93c104e05165')
     ]
     db_connection.create_db()
     db_connection.insert_users(users)
