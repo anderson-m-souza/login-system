@@ -1,3 +1,31 @@
+"""Database Connection
+
+Functions used to manipulate the database and get information from it.
+
+Functions:
+
+get_password_hash(username)
+    Returns the hashed password for the username.
+
+get_password_salt(username)
+    Returns the salt used in the user's password.
+
+create_db()
+    Creates a database, with the users table.
+
+insert_users(users)
+    Insert users to the configured table.
+
+user_exists(username)
+    Queries the database for the username. And returns if it is present or not.
+
+get_db_filename()
+    Returns the database filename configured in the config file.
+
+show_tables()
+    Prints the name of the tables and how many rows each one have.
+"""
+
 import sqlite3
 from configparser import ConfigParser
 

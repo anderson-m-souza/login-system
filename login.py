@@ -1,4 +1,24 @@
-from users_helper_functions import hash_password
+"""Login
+
+Class used to check if a username exists in the database, and check the
+credentials.
+
+Methods:
+
+set_username(username)
+    Sets the username to login.
+
+set_password(password)
+    Sets the password of the user.
+
+user_exists()
+    Check if the username exists in the configured database.
+
+is_valid_credentials()
+    Check if the username and password match.
+"""
+
+from password_hashing import hash_password
 import db_connection
 
 

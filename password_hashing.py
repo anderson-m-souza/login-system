@@ -1,3 +1,16 @@
+"""Password Hashing
+
+Functions used to hash the passwords.
+
+Functions:
+
+hash_password(password, salt)
+    Hashes a password with the given salt.
+
+generate_salt()
+    Generates a salt used in the password hash.
+"""
+
 import pyargon2
 import secrets
 

@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""Login System
+
+The main script that will prompt the user to sign in or register. This is an
+interface to the classes and functions of the program.
+"""
 
 from getpass import getpass
 

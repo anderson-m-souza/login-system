@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+"""Setup Database
+
+This script creates a sample database, so the user can test the program.
+"""
 
 import os
 

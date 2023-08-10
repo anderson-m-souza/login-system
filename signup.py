@@ -1,6 +1,29 @@
+"""Signup
+
+Class used to register a new user.
+
+Methods:
+
+set_username(username)
+    Sets the username to login.
+
+set_password(password)
+    Sets the salted and hashed password for the user.
+
+user_exists()
+    Check if the username exists in the configured database.
+
+add_user()
+    Insert the configured username, password and salt in the database.
+
+password_is_strong(password)
+    Test the password against the requirements, and return if it is or not
+    secure.
+"""
+
 import re
 
-from users_helper_functions import hash_password, generate_salt
+from password_hashing import hash_password, generate_salt
 import db_connection
 
 
