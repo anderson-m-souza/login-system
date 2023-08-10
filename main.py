@@ -9,6 +9,7 @@ from getpass import getpass
 
 from login import Login
 from signup import Signup
+from unregister import Unregister
 
 
 def print_header():
@@ -19,6 +20,7 @@ def print_menu():
     print("""Chose an option:
 (1) Sign in
 (2) Sign up
+(3) Delete account
 (q) Quit""")
 
 
@@ -90,6 +92,25 @@ def ask_to_signin():
             break
 
 
+def unregister():
+    username = input('Username: ')
+    password = getpass('Password: ')
+
+    unregistration = Unregister()
+    unregistration.set_username(username)
+    unregistration.set_password(password)
+
+    if unregistration.is_valid_credentials():
+        confirmation = input('Do you really want to delete your account? ')
+        if confirmation in 'yes':
+            unregistration.delete_account()
+            print('Account deleted!')
+        elif confirmation in 'no':
+            print('Account deletion canceled!')
+    else:
+        print('Wrong credentials!')
+
+
 def main():
     print_header()
 
@@ -97,12 +118,14 @@ def main():
         print_menu()
         choice = input('Your choice: ')
 
-        if choice in '12q':
+        if choice in '123q':
             if choice == '1':
                 login()
             elif choice == '2':
                 signup()
                 ask_to_signin()
+            elif choice == '3':
+                unregister()
 
             print('Exiting authentication...')
             break

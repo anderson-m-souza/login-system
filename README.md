@@ -26,6 +26,12 @@ And ask for the password again.
 
 Finally, the user has to confirm the password. If it is not correct, they will have to type a valid password again, then confirm the password.
 
+## Delete Account
+
+To delete an account, first the program asks the user to login. If the credentials match, it prompts the user to confirm they really want to delete the account.
+
+If the answer is **yes**, the entry is deleted from the database. If it is **no**, the program exits.
+
 ## Setup a Database
 
 The script `setup_db.py` will create a sample `sqlite3` database with some pre-defined users. The credentials are:
@@ -104,7 +110,7 @@ Your choice:
 - [x] Ask the user to confirm the password when signing up
 - [x] Add password requirements
 - [ ] Add option to change the password
-- [ ] Add option to remove a user
+- [x] Add option to remove a user
 - [x] Use a better hashing algorithm (Argon2id)
 - [x] Salt the passwords before hashing
 - [x] Use Docstrings to document the code
