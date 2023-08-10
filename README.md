@@ -2,23 +2,6 @@
 
 A simple authentication system built for my portfolio and educational purposes. It was written in **Python 3.11**, and I used the **SQLite 3.42** database to store the credentials.
 
-The file `main.py`:
-
-```sh
-python main.py
-```
-
-will show the menu:
-
-```
-Authentication Program
-Chose an option:
-(1) Sign in
-(2) Sign up
-(q) Quit
-Your choice:
-```
-
 ## Sign in
 
 If the credentials match with any from the database, the program will show a message saying you are authenticated and exit. If the credentials do not match, it will show a message saying you are not authenticated and exit.
@@ -45,13 +28,7 @@ Finally, the user has to confirm the password. If it is not correct, they will h
 
 ## Setup a Database
 
-The file `setup_db.py` will create a sample `sqlite3` database with some pre-defined users:
-
-```sh
-python setup_db.py
-```
-
-The credentials are:
+The script `setup_db.py` will create a sample `sqlite3` database with some pre-defined users. The credentials are:
 
 | username | password  |
 |----------|-----------|
@@ -61,17 +38,65 @@ The credentials are:
 
 If the database already exists, the program will show the name of each table, how many rows they have, and ask if you would like to erase the file and create a new one.
 
-This is only for testing.
-
 ## Password Security
 
-I used the function `getpass` from the module `getpass` to prompt the user for the password. So it is obfuscated while the user type it.
+I used the function `getpass` from the module [`getpass`](https://docs.python.org/3/library/getpass.html#module-getpass) to obfuscate the password while prompting the user for it.
 
 The passwords are stored **salted** and **hashed**.
 
-The salt is generated with the module `secrets`, so each password has its own salt. And the salt is stored in a column next to the salted and hashed password.
+The salt is generated with the module [`secrets`](https://docs.python.org/3/library/secrets.html#module-secrets). Each password has its own salt. And it is stored in a column next to the salted and hashed password.
 
-For now, the hash algorithm is `SHA256`, provided by the module `hashlib`. But I will change it to **Argon2id**. Just need to do some research first.
+The hash algorithm is [Argon2](https://en.wikipedia.org/wiki/Argon2), provided by the module [`pyargon2`](https://pypi.org/project/pyargon2/). It's configured as recommended in the [OWASP's Password Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html):
+
+- Argon2id variant
+- 19MiB of memory
+- Iteration count of 2
+- 1 degree of parallelism
+
+## How to Run (Linux)
+
+1. Create a virtual environment:
+
+```sh
+python -m venv venv
+```
+
+2. Activate the virtual environment:
+
+```sh
+source venv/bin/activate
+```
+
+3. Install the requirements:
+
+```sh
+pip install -r requirements.txt
+```
+
+4. Set up the database:
+
+```sh
+./setup_db.py
+```
+
+5. Run the script `main.py`:
+
+```sh
+./main.py
+```
+
+6. Chose an option from the menu and hit `Enter`:
+
+```
+Authentication Program
+Chose an option:
+(1) Sign in
+(2) Sign up
+(q) Quit
+Your choice:
+```
+
+7. You'll know what to do next.
 
 ## TODO
 
@@ -80,5 +105,8 @@ For now, the hash algorithm is `SHA256`, provided by the module `hashlib`. But I
 - [x] Add password requirements
 - [ ] Add option to change the password
 - [ ] Add option to remove a user
-- [ ] Use a better hashing algorithm (Argon2id)
+- [x] Use a better hashing algorithm (Argon2id)
 - [x] Salt the passwords before hashing
+- [ ] Use Docstrings to document the code
+- [ ] Use the PEP 8 style guide
+- [ ] Add metadata

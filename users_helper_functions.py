@@ -1,13 +1,15 @@
-import hashlib
+import pyargon2
 import secrets
 
 
 def hash_password(password, salt):
-    salted_password = password
-    encoded_password = salted_password.encode()
-    password_hash = hashlib.sha256(encoded_password)
-    hexdigested_hash = password_hash.hexdigest()
-    return hexdigested_hash
+    hex_encoded_hash = pyargon2.hash(password,
+                                     salt,
+                                     time_cost=2,
+                                     memory_cost=19456,
+                                     parallelism=1,
+                                     variant='id')
+    return hex_encoded_hash
 
 
 def generate_salt():

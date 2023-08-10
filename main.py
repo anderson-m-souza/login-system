@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from getpass import getpass
 
 from login import Login
