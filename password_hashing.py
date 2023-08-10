@@ -11,8 +11,13 @@ generate_salt()
     Generates a salt used in the password hash.
 """
 
-import pyargon2
+__author__ = 'Anderson M Souza'
+__version__ = '0.0.1'
+__license__ = 'unlicensed'
+
 import secrets
+
+import pyargon2
 
 
 def hash_password(password, salt):

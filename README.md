@@ -108,5 +108,5 @@ Your choice:
 - [x] Use a better hashing algorithm (Argon2id)
 - [x] Salt the passwords before hashing
 - [x] Use Docstrings to document the code
-- [ ] Use the PEP 8 style guide
-- [ ] Add metadata
+- [x] Use the PEP 8 style guide
+- [x] Add metadata

@@ -18,6 +18,10 @@ is_valid_credentials()
     Check if the username and password match.
 """
 
+__author__ = 'Anderson M Souza'
+__version__ = '0.0.1'
+__license__ = 'unlicensed'
+
 from password_hashing import hash_password
 import db_connection
 
@@ -27,16 +31,13 @@ class Login():
     def set_username(self, username):
         self._username = username
 
-
     def set_password(self, password):
         self._input_password = password
-
 
     def _set_password_salt(self):
         res = db_connection.get_password_salt(self._username)
         salt = res[0]
         self._salt = salt
-
 
     def user_exists(self):
         user_exists = db_connection.user_exists(self._username)
@@ -44,7 +45,6 @@ class Login():
             return True
         else:
             return False
-
 
     def is_valid_credentials(self):
 

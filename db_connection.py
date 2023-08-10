@@ -26,6 +26,10 @@ show_tables()
     Prints the name of the tables and how many rows each one have.
 """
 
+__author__ = 'Anderson M Souza'
+__version__ = '0.0.1'
+__license__ = 'unlicensed'
+
 import sqlite3
 from configparser import ConfigParser
 
@@ -71,7 +75,7 @@ def create_db():
 def insert_users(users):
     con = get_connection()
     cur = con.cursor()
-    cur.executemany("INSERT INTO users VALUES (?, ?, ?)", users)
+    cur.executemany('INSERT INTO users VALUES (?, ?, ?)', users)
     con.commit()
     cur.close()
 
@@ -84,7 +88,7 @@ def user_exists(username):
     res = cur.fetchone()
     cur.close()
 
-    if res == None:
+    if res is None:
         return False
     else:
         return True
@@ -104,8 +108,8 @@ def show_tables():
     names = cur.execute("SELECT name FROM sqlite_master WHERE type='table';")
 
     for name in names.fetchall():
-        rows = cur.execute("SELECT COUNT(*) FROM {}".format(name[0]))
-        print("Table: {}. Rows: {}.".format(name[0], rows.fetchone()[0]))
+        rows = cur.execute('SELECT COUNT(*) FROM {}'.format(name[0]))
+        print('Table: {}. Rows: {}.'.format(name[0], rows.fetchone()[0]))
 
     cur.close()
 
