@@ -91,7 +91,7 @@ pip install -r requirements.txt
 ./main.py
 ```
 
-6. Chose an option from the menu and hit `Enter`:
+6. Choose an option from the menu and hit `Enter`:
 
 ```
 Authentication Program
